@@ -24,8 +24,8 @@ SET default_table_access_method = heap;
 -- Name: email; Type: TABLE; Schema: public; Owner: bot
 --
 
-CREATE USER bot WITH PASSWORD '123' SUPERUSER;
-ALTER TABLE bot OWNER TO bot;
+-- CREATE USER bot WITH PASSWORD '123' SUPERUSER;
+-- ALTER TABLE bot OWNER TO bot;
 CREATE TABLE public.email (
     id integer NOT NULL,
     email character varying(70)
