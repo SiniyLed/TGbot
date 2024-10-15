@@ -1,5 +1,5 @@
 --
--- PostgreSQL database dump
+-- botQL database dump
 --
 
 -- Dumped from database version 16.3 (Debian 16.3-1)
@@ -21,19 +21,21 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: email; Type: TABLE; Schema: public; Owner: postgres
+-- Name: email; Type: TABLE; Schema: public; Owner: bot
 --
 
+CREATE USER bot WITH PASSWORD '123' SUPERUSER;
+ALTER TABLE bot OWNER TO bot;
 CREATE TABLE public.email (
     id integer NOT NULL,
     email character varying(70)
 );
 
 
-ALTER TABLE public.email OWNER TO postgres;
+ALTER TABLE public.email OWNER TO bot;
 
 --
--- Name: email_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: email_id_seq; Type: SEQUENCE; Schema: public; Owner: bot
 --
 
 CREATE SEQUENCE public.email_id_seq
@@ -45,17 +47,17 @@ CREATE SEQUENCE public.email_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.email_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.email_id_seq OWNER TO bot;
 
 --
--- Name: email_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: email_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bot
 --
 
 ALTER SEQUENCE public.email_id_seq OWNED BY public.email.id;
 
 
 --
--- Name: phone; Type: TABLE; Schema: public; Owner: postgres
+-- Name: phone; Type: TABLE; Schema: public; Owner: bot
 --
 
 CREATE TABLE public.phone (
@@ -64,10 +66,10 @@ CREATE TABLE public.phone (
 );
 
 
-ALTER TABLE public.phone OWNER TO postgres;
+ALTER TABLE public.phone OWNER TO bot;
 
 --
--- Name: phone_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: phone_id_seq; Type: SEQUENCE; Schema: public; Owner: bot
 --
 
 CREATE SEQUENCE public.phone_id_seq
@@ -79,31 +81,31 @@ CREATE SEQUENCE public.phone_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.phone_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.phone_id_seq OWNER TO bot;
 
 --
--- Name: phone_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: phone_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bot
 --
 
 ALTER SEQUENCE public.phone_id_seq OWNED BY public.phone.id;
 
 
 --
--- Name: email id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: email id; Type: DEFAULT; Schema: public; Owner: bot
 --
 
 ALTER TABLE ONLY public.email ALTER COLUMN id SET DEFAULT nextval('public.email_id_seq'::regclass);
 
 
 --
--- Name: phone id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: phone id; Type: DEFAULT; Schema: public; Owner: bot
 --
 
 ALTER TABLE ONLY public.phone ALTER COLUMN id SET DEFAULT nextval('public.phone_id_seq'::regclass);
 
 
 --
--- Data for Name: email; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: email; Type: TABLE DATA; Schema: public; Owner: bot
 --
 
 COPY public.email (id, email) FROM stdin;
@@ -115,7 +117,7 @@ COPY public.email (id, email) FROM stdin;
 
 
 --
--- Data for Name: phone; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: phone; Type: TABLE DATA; Schema: public; Owner: bot
 --
 
 COPY public.phone (id, phone_number) FROM stdin;
@@ -130,20 +132,20 @@ COPY public.phone (id, phone_number) FROM stdin;
 
 
 --
--- Name: email_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: email_id_seq; Type: SEQUENCE SET; Schema: public; Owner: bot
 --
 
 SELECT pg_catalog.setval('public.email_id_seq', 4, true);
 
 
 --
--- Name: phone_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: phone_id_seq; Type: SEQUENCE SET; Schema: public; Owner: bot
 --
 
 SELECT pg_catalog.setval('public.phone_id_seq', 11, true);
 
 
 --
--- PostgreSQL database dump complete
+-- botQL database dump complete
 --
 
