@@ -1,0 +1,37 @@
+version: '2.15'
+services:
+  tg:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "443:443"
+      - "80:80"
+    networks:
+      custom_network:
+        ipv4_address: 10.10.1.1
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: "bot"
+      POSTGRES_USER: "bot"
+      POSTGRES_PASSWORD: "123"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./:/docker-entrypoint-initdb.d
+      - usr-data:/var/lib/postgresql/data
+    ports:
+      - "5437:5432"
+    networks:
+      custom_network:
+        ipv4_address: 10.10.1.2
+
+volumes:
+  usr-data:
+
+networks:
+  custom_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.0.0/16
